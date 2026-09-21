@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Mockup Sistem Informasi Akademik</title>
+  <!-- Google Fonts & Tabler Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  
+  <style>
+    :root {
+      --primary: #059669;
+      --primary-light: #10b981;
+      --primary-dark: #047857;
+      --primary-soft: rgba(16, 185, 129, 0.12);
+      --primary-glow: rgba(16, 185, 129, 0.25);
+      
+      --bg-main: #f8fafc;
+      --surface: #ffffff;
+      --surface-glass: rgba(255, 255, 255, 0.85);
+      
+      --text-main: #0f172a;
+      --text-sec: #64748b;
+      --text-muted: #94a3b8;
+      --border: #e2e8f0;
+      --border-light: #f1f5f9;
+      
+      --danger: #ef4444;
+      --danger-bg: #fef2f2;
+      --success: #10b981;
+      --success-bg: #ecfdf5;
+      --warning: #f59e0b;
+      --warning-bg: #fffbeb;
+      --info: #3b82f6;
+      --info-bg: #eff6ff;
+      
+      --radius-sm: 8px;
+      --radius: 16px;
+      --radius-lg: 24px;
+      
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+      --shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 4px 6px -2px rgba(15, 23, 42, 0.03);
+      --shadow-lg: 0 20px 35px -10px rgba(5, 150, 105, 0.18);
+    }
+
+    * { 
+      box-sizing: border-box; 
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    html, body {
+      margin: 0; padding: 0; min-height: 100vh; width: 100%;
+      background: #0f172a;
+      display: flex; justify-content: center;
+      overflow-x: hidden; overflow-y: auto;
+      color: var(--text-main);
+    }
+
+    body {
+      align-items: center;
+      padding: 0;
+      max-width: 100%;
+      background: radial-gradient(circle at 50% 0%, #1e293b 0%, #0f172a 100%);
+    }
+
+    #mobile-container {
+      width: 100%; 
+      max-width: 1000px; 
+      min-height: 100vh;
+      background-color: var(--bg-main); 
+      position: relative;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+      display: flex; flex-direction: column;
+      overflow: hidden;
+    }
+
+    @media (min-width: 768px) {
+      body {
+        padding: 30px 16px;
+      }
+      #mobile-container {
+        min-height: 850px;
+        max-height: 90vh;
+        border-radius: 28px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+    }
+
+    /* VIEW SCREENS */
+    .view-screen { display: none; flex-direction: column; flex: 1; width: 100%; position: relative; overflow: hidden; }
+    .view-screen.active { display: flex; }
+
+    /* SCREEN 1: LOGIN STYLING */
+    .login-shell { 
+      flex: 1; 
+      display: flex; 
+      flex-direction: column; 
+      justify-content: center; 
+      align-items: center; 
+      padding: 24px; 
+      overflow-y: auto; 
+      background: radial-gradient(135% 100% at 50% 0%, #065f46 0%, #047857 40%, #0f172a 100%);
+      position: relative;
+    }
+
+    .login-shell::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+
+    .login-brand { 
+      text-align: center; 
+      color: #ffffff; 
+      margin-bottom: 2rem; 
+      z-index: 1;
+    }
+    
+    .brand-icon-wrapper {
+      width: 80px; height: 80px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 24px;
+      display: inline-flex;
+      align-items: center; justify-content: center;
+      margin-bottom: 16px;
+      box-shadow: 0 12px 24px -6px rgba(0, 0, 0, 0.2);
+    }
+    
+    .login-brand i { font-size: 42px; color: #ffffff; }
+    .login-brand h2 { margin: 0; font-size: 28px; font-weight: 800; color: #ffffff; letter-spacing: -0.02em; }
+    .login-brand p { margin: 6px 0 0; font-size: 15px; color: rgba(255,255,255,0.85); font-weight: 500; }
+
+    .login-card { 
+      width: min(100%, 400px); 
+      background: rgba(255, 255, 255, 0.95); 
+      backdrop-filter: blur(20px);
+      border-radius: var(--radius-lg); 
+      padding: 32px 28px 28px; 
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25); 
+      z-index: 1;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+    }
+
+    @media (min-width: 768px) {
+      .login-shell {
+        flex-direction: row;
+        gap: 60px;
+        padding: 56px;
+      }
+
+      .login-brand {
+        flex: 1;
+        margin-bottom: 0;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+      }
+
+      .login-brand h2 { font-size: 38px; }
+      .login-brand p { font-size: 18px; }
+      .brand-icon-wrapper { width: 96px; height: 96px; border-radius: 28px; }
+      .login-brand i { font-size: 52px; }
+
+      .login-card {
+        width: 420px;
+        padding: 36px 32px 32px;
+      }
+    }
+
+    .login-card h3 { margin: 0 0 8px; font-size: 22px; font-weight: 700; color: var(--text-main); letter-spacing: -0.01em; }
+    .login-card .helper { font-size: 13px; color: var(--text-sec); margin: 0 0 22px; line-height: 1.5; background: rgba(5, 150, 105, 0.06); padding: 10px 12px; border-radius: 10px; border-left: 3px solid var(--primary); }
+    
+    .input-group { margin-bottom: 1.25rem; }
+    .input-group label { display: block; font-size: 13px; color: #334155; margin-bottom: 6px; font-weight: 600; }
+    .input-group input, .input-group select { 
+      width: 100%; 
+      padding: 13px 14px; 
+      border: 1.5px solid var(--border); 
+      border-radius: 12px; 
+      font-size: 15px; 
+      outline: none; 
+      background: #ffffff; 
+      color: var(--text-main);
+      transition: all 0.2s ease;
+    }
+    .input-group input:focus, .input-group select:focus { 
+      border-color: var(--primary); 
+      box-shadow: 0 0 0 4px var(--primary-soft); 
+    }
+
+    .btn-primary { 
+      width: 100%; 
+      padding: 14px; 
+      background: linear-gradient(135deg, #059669 0%, #10b981 100%); 
+      color: white; 
+      border: none; 
+      border-radius: 12px; 
+      font-size: 16px; 
+      font-weight: 700; 
+      cursor: pointer; 
+      box-shadow: var(--shadow-lg);
+      transition: all 0.2s ease;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 15px 30px -5px rgba(5, 150, 105, 0.3);
+    }
+
+    .btn-outline { 
+      width: 100%; 
+      padding: 12px; 
+      background: #ffffff; 
+      color: var(--primary); 
+      border: 1.5px dashed var(--primary); 
+      border-radius: 12px; 
+      font-size: 14px; 
+      font-weight: 600; 
+      cursor: pointer; 
+      margin-top: 16px; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      gap: 8px; 
+      transition: all 0.2s ease;
+    }
+    .btn-outline:hover { background: var(--primary-soft); border-style: solid; }
+
+    /* DASHBOARD STYLING */
+    .header { 
+      background: linear-gradient(135deg, #047857 0%, #059669 60%, #10b981 100%); 
+      color: white; 
+      padding: 24px 24px 36px; 
+      border-bottom-left-radius: var(--radius-lg); 
+      border-bottom-right-radius: var(--radius-lg); 
+      flex-shrink: 0; 
+      z-index: 10; 
+      box-shadow: 0 10px 20px -5px rgba(4, 120, 87, 0.25);
+      position: relative;
+    }
+
+    .header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+    
+    .logout-btn { 
+      background: rgba(255,255,255,0.18); 
+      border: 1px solid rgba(255,255,255,0.3); 
+      color: white; 
+      padding: 8px 16px; 
+      border-radius: 99px; 
+      font-size: 13px; 
+      font-weight: 600;
+      cursor: pointer; 
+      backdrop-filter: blur(8px);
+      transition: all 0.2s ease;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .logout-btn:hover { background: rgba(255,255,255,0.3); }
+
+    .user-profile-badge {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .user-avatar {
+      width: 46px; height: 46px;
+      background: rgba(255, 255, 255, 0.2);
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; font-weight: 700; color: #ffffff;
+      backdrop-filter: blur(8px);
+      flex-shrink: 0;
+    }
+
+    #guru-controls select {
+      background: #ffffff;
+      color: var(--text-main);
+      font-weight: 600;
+      font-size: 14px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      cursor: pointer;
+    }
+
+    /* CONTENT AREA */
+    .content-area { 
+      flex: 1; 
+      overflow-y: auto; 
+      padding: 0 20px 24px; 
+      margin-top: -24px; 
+      position: relative; 
+      z-index: 15;
+    }
+    
+    .tab-content { display: none; animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+    .tab-content.active { display: block; }
+    
+    @keyframes fadeIn { 
+      from { opacity: 0; transform: translateY(12px); } 
+      to { opacity: 1; transform: translateY(0); } 
+    }
+
+    .card { 
+      background: var(--surface); 
+      border-radius: var(--radius-lg); 
+      padding: 22px; 
+      margin-top: 20px; 
+      box-shadow: var(--shadow); 
+      border: 1px solid rgba(226, 232, 240, 0.8);
+    }
+
+    .card-title { 
+      display: flex; 
+      align-items: center; 
+      gap: 10px; 
+      font-weight: 700; 
+      font-size: 17px; 
+      margin: 0 0 14px 0; 
+      color: var(--text-main); 
+    }
+    .card-title-icon {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+    
+    .list-item { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      padding: 14px 0; 
+      border-bottom: 1px solid var(--border-light); 
+      font-size: 14px; 
+    }
+    .list-item:last-child { border-bottom: none; }
+
+    /* DASHBOARD SUMMARY CARDS */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    @media (min-width: 640px) {
+      .summary-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .summary-card {
+      background: #ffffff;
+      border: 1.5px solid var(--border-light);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+    .summary-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+      border-color: var(--primary-light);
+    }
+
+    .summary-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    
+    .summary-card-icon {
+      width: 42px; height: 42px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+    }
+
+    .summary-card-action {
+      background: transparent;
+      border: none;
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 0;
+      margin-top: 14px;
+      transition: gap 0.2s ease;
+    }
+    .summary-card-action:hover {
+      gap: 8px;
+    }
+
+    /* SHOLAT CHIPS */
+    .chip-container {
+      display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px;
+    }
+    .chip { 
+      padding: 12px 16px; 
+      border-radius: 14px; 
+      border: 1.5px solid var(--border); 
+      font-size: 14px; 
+      font-weight: 600;
+      background: var(--bg-main); 
+      color: var(--text-sec); 
+      display: inline-flex; 
+      align-items: center; 
+      gap: 8px; 
+      cursor: pointer; 
+      width: calc(50% - 5px); 
+      justify-content: center; 
+      transition: all 0.2s ease;
+      box-shadow: var(--shadow-sm);
+    }
+    .chip i { font-size: 18px; }
+    .chip:hover {
+      border-color: var(--primary-light);
+      background: #ffffff;
+      transform: translateY(-1px);
+    }
+    .chip.done { 
+      background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); 
+      color: var(--primary-dark); 
+      border-color: var(--primary-light); 
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+    }
+    .chip.done i {
+      color: var(--primary);
+    }
+
+    /* HISTORY LIST */
+    .history-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin-bottom: 10px;
+      transition: all 0.2s ease;
+    }
+    .history-card:hover {
+      border-color: #cbd5e1;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* TAHFIZ ACCORDION STYLING */
+    .tahfiz-surah-card {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      margin-bottom: 12px;
+      overflow: hidden;
+      background: var(--surface);
+      transition: all 0.2s ease;
+    }
+    .tahfiz-surah-card:hover {
+      border-color: #cbd5e1;
+      box-shadow: var(--shadow-sm);
+    }
+    .tahfiz-surah-header {
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      background: var(--surface);
+    }
+    .tahfiz-surah-body {
+      padding: 0 16px 16px;
+      border-top: 1px solid var(--border-light);
+      background: var(--bg-main);
+    }
+
+    /* BOTTOM NAVIGATION STYLING */
+    .bottom-nav { 
+      width: 100%; 
+      height: 72px; 
+      background: rgba(255, 255, 255, 0.92); 
+      backdrop-filter: blur(16px);
+      display: flex; 
+      justify-content: space-around; 
+      align-items: center; 
+      border-top: 1px solid var(--border); 
+      z-index: 20; 
+      flex-shrink: 0; 
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.05);
+    }
+    .nav-item { 
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+      gap: 4px; 
+      color: var(--text-muted); 
+      cursor: pointer; 
+      flex: 1; 
+      padding: 10px 0; 
+      transition: all 0.2s ease;
+      position: relative;
+    }
+    .nav-item.active { 
+      color: var(--primary); 
+    }
+    .nav-item.active::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 32px;
+      height: 3px;
+      background: var(--primary);
+      border-radius: 0 0 4px 4px;
+    }
+    .nav-item i { font-size: 24px; transition: transform 0.2s ease; }
+    .nav-item.active i { transform: translateY(-2px); }
+    .nav-item span { font-size: 11px; font-weight: 600; }
+
+    /* MODALS */
+    .modal-overlay { 
+      position: fixed; 
+      inset: 0; 
+      width: 100%; 
+      height: 100%; 
+      background: rgba(15, 23, 42, 0.6); 
+      backdrop-filter: blur(6px);
+      display: none; 
+      justify-content: center; 
+      align-items: flex-end; 
+      z-index: 30; 
+    }
+    
+    @media (min-width: 768px) {
+      .modal-overlay {
+        align-items: center;
+      }
+    }
+
+    .modal-content { 
+      background: white; 
+      width: 100%; 
+      max-width: 520px;
+      padding: 28px; 
+      border-top-left-radius: 28px; 
+      border-top-right-radius: 28px; 
+      animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1); 
+      max-height: 85vh; 
+      display: flex; 
+      flex-direction: column; 
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+    }
+    
+    @media (min-width: 768px) {
+      .modal-content {
+        border-radius: 24px;
+      }
+    }
+
+    @keyframes slideUp { 
+      from { transform: translateY(100%); opacity: 0; } 
+      to { transform: translateY(0); opacity: 1; } 
+    }
+    
+    .modal-scroll-area { overflow-y: auto; flex: 1; margin: 16px 0; padding-right: 4px; }
+
+    .btn-edit-mini { 
+      background: var(--primary-soft); 
+      border: 1px solid rgba(16, 185, 129, 0.3); 
+      color: var(--primary-dark); 
+      padding: 6px 12px; 
+      border-radius: 8px; 
+      font-size: 12px; 
+      font-weight: 600; 
+      cursor: pointer; 
+      margin-left: 8px; 
+      display: inline-flex; 
+      align-items: center; 
+      gap: 4px; 
+      transition: all 0.2s ease;
+    }
+    .btn-edit-mini:hover {
+      background: var(--primary);
+      color: #ffffff;
+    }
+    
+    .icon-rotate { transition: transform 0.3s ease; }
+    .icon-rotate.rotated { transform: rotate(180deg); }
+
+    .badge-status {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 99px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* PROGRESS BAR */
+    .progress-bar-bg {
+      width: 100%;
+      height: 8px;
+      background: var(--border-light);
+      border-radius: 99px;
+      overflow: hidden;
+      margin: 8px 0;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);
+      border-radius: 99px;
+      transition: width 0.4s ease;
+    }
+  </style>
+</head>
+<body>
+
+<div id="mobile-container">
+  
+  <!-- SCREEN 1: LOGIN -->
+  <div id="view-login" class="view-screen active">
+    <div class="login-shell">
+      <div class="login-brand">
+        <div class="brand-icon-wrapper">
+          <i class="ti ti-school"></i>
+        </div>
+        <h2>Sekolah Terpadu</h2>
+        <p>Sistem Informasi Akademik</p>
+      </div>
+
+      <div class="login-card">
+        <h3>Masuk Ke Akun</h3>
+        <p class="helper">
+          <i class="ti ti-info-circle" style="vertical-align: -2px;"></i>
+          Ketik <strong>guru</strong> untuk masuk sebagai guru. Ketik apapun selain itu untuk masuk sebagai murid/orangtua.
+        </p>
+
+        <div class="input-group">
+          <label>Username / NIS / NIP</label>
+          <input type="text" id="login-username" placeholder="Masukkan ID pengguna" autocomplete="off">
+        </div>
+
+        <div class="input-group">
+          <label>Password</label>
+          <input type="password" id="login-password" placeholder="••••••••">
+        </div>
+
+        <button class="btn-primary" onclick="handleLogin()">
+          <i class="ti ti-login"></i> Log In
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN 2: DASHBOARD -->
+  <div id="view-dashboard" class="view-screen">
+    <div class="header">
+      <div class="header-top">
+        <div id="user-info"></div>
+        <button class="logout-btn" onclick="handleLogout()">
+          <i class="ti ti-logout"></i> Keluar
+        </button>
+      </div>
+      <div id="guru-controls" style="display: none; margin-top: 16px;">
+        <label style="font-size: 12px; opacity: 0.9; font-weight: 600; display: block; margin-bottom: 4px;">Pilih Data Siswa/I:</label>
+        <select id="student-picker" style="width: 100%; padding: 12px; border-radius: 12px; border: none; outline: none;" onchange="selectStudent(this.value)"></select>
+      </div>
+    </div>
+
+    <div class="content-area">
+      <!-- TAB 0: DASHBOARD RINGKASAN -->
+      <div id="tab-dashboard" class="tab-content active">
+        <div class="card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+            <h3 class="card-title">
+              <span class="card-title-icon"><i class="ti ti-layout-dashboard"></i></span> 
+              Dashboard Utama
+            </h3>
+          </div>
+          <p style="font-size: 13px; color: var(--text-sec); margin: 0 0 16px 0;" id="dashboard-welcome-msg">Rangkuman Aktivitas & Perkembangan Siswa</p>
+
+          <div class="summary-grid" id="summary-cards-container">
+            <!-- Rendered dynamically by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 1: AKADEMIK -->
+      <div id="tab-akademik" class="tab-content">
+        <div class="card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+            <h3 class="card-title">
+              <span class="card-title-icon"><i class="ti ti-chart-bar"></i></span> 
+              Laporan Akademik
+            </h3>
+          </div>
+          <p style="font-size: 13px; color: var(--text-sec); margin: 0 0 16px 0;">Nilai Murni UTS & UAS Semester Ini</p>
+          
+          <div style="background: var(--bg-main); border-radius: 12px; padding: 12px 14px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-weight: 700; color: var(--text-sec); font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; width: 50%;">Mata Pelajaran</span>
+            <div style="display: flex; width: 50%; justify-content: space-around;">
+              <span style="font-weight: 700; color: var(--text-sec); font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em;">UTS</span>
+              <span style="font-weight: 700; color: var(--text-sec); font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em;">UAS</span>
+            </div>
+          </div>
+          
+          <div id="akademik-list"></div>
+          
+          <button class="btn-outline" id="btn-input-nilai" style="display:none;" onclick="openNilaiModal()">
+            <i class="ti ti-edit"></i> Edit / Input Nilai Siswa
+          </button>
+        </div>
+      </div>
+
+      <!-- TAB 2: SHOLAT -->
+      <div id="tab-sholat" class="tab-content">
+        <div class="card">
+          <h3 class="card-title">
+            <span class="card-title-icon"><i class="ti ti-checklist"></i></span> 
+            Monitoring Sholat 5 Waktu
+          </h3>
+          <p style="font-size: 13px; color: var(--text-sec); margin: 0 0 16px 0;" id="ibadah-stats"></p>
+          
+          <div class="chip-container" id="ibadah-list"></div>
+          
+          <div style="margin-top: 28px; border-top: 1px solid var(--border-light); padding-top: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+              <h4 style="font-size: 15px; margin: 0; font-weight: 700; color: var(--text-main);">Riwayat Arsip</h4>
+              <select id="filter-minggu" style="padding: 8px 12px; border-radius: 10px; border: 1.5px solid var(--border); font-size: 13px; font-weight: 600; outline: none; background: #ffffff; color: var(--text-main);" onchange="ubahFilterMinggu(this.value)">
+                <option value="3">Minggu 3 (Saat ini)</option>
+                <option value="2">Minggu 2</option>
+                <option value="1">Minggu 1</option>
+              </select>
+            </div>
+            <div id="sholat-history-list"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: TAHFIZ -->
+      <div id="tab-tahfiz" class="tab-content">
+        <div class="card">
+          <h3 class="card-title">
+            <span class="card-title-icon"><i class="ti ti-book-2"></i></span> 
+            Monitoring Tahfiz Al-Qur'an
+          </h3>
+          <div id="tahfiz-content-area"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- BOTTOM NAVIGATION -->
+    <div class="bottom-nav">
+      <div class="nav-item active" onclick="switchTab('dashboard', this)"><i class="ti ti-smart-home"></i><span>Dashboard</span></div>
+      <div class="nav-item" onclick="switchTab('akademik', this)"><i class="ti ti-chart-bar"></i><span>Akademik</span></div>
+      <div class="nav-item" onclick="switchTab('sholat', this)"><i class="ti ti-checklist"></i><span>Sholat</span></div>
+      <div class="nav-item" onclick="switchTab('tahfiz', this)"><i class="ti ti-book-2"></i><span>Tahfiz</span></div>
+    </div>
+
+    <!-- Modals Akademik & Sholat -->
+    <div class="modal-overlay" id="modal-nilai">
+      <div class="modal-content">
+        <h3 style="margin:0 0 4px 0; font-size: 20px; font-weight: 700;">Edit Nilai Akademik</h3>
+        <p style="font-size: 13px; color: var(--text-sec); margin-top: 0;" id="modal-nilai-student-name"></p>
+        <div class="modal-scroll-area" id="nilai-inputs-container"></div>
+        <div style="display:flex; gap:12px; margin-top:12px; flex-shrink:0;">
+          <button class="btn-primary" style="background: var(--bg-main); color: var(--text-main); box-shadow: none; border: 1px solid var(--border);" onclick="closeNilaiModal()">Batal</button>
+          <button class="btn-primary" onclick="saveNilai()"><i class="ti ti-check"></i> Simpan Data</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-edit-riwayat">
+      <div class="modal-content" style="max-height:max-content;">
+        <h3 style="margin:0 0 4px 0; font-size: 20px; font-weight: 700;">Koreksi Sholat</h3>
+        <p style="font-size: 13px; color: var(--text-sec); margin-top: 0;" id="teks-tanggal-koreksi"></p>
+        <div class="chip-container" id="modal-edit-list"></div>
+        <div style="display:flex; gap:12px; margin-top:24px;">
+          <button class="btn-primary" style="background: var(--bg-main); color: var(--text-main); box-shadow: none; border: 1px solid var(--border);" onclick="tutupEditRiwayat()">Batal</button>
+          <button class="btn-primary" onclick="simpanEditRiwayat()"><i class="ti ti-check"></i> Simpan Data</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  let mingguTerpilih = 3; 
+
+  const students = [
+    { 
+      name: 'Ahmad Fauzi', kelas: '10 RPL', nis: '2023001', 
+      nilai: { 'Pemrograman Dasar': { uts: 85, uas: 88 }, 'Basis Data': { uts: 90, uas: 92 }, 'Pendidikan Agama': { uts: 88, uas: 85 } }, 
+      sholat: { Subuh: true, Dzuhur: true, Ashar: false, Maghrib: true, Isya: true }, mingguIni: 29, mingguTotal: 35, juz: 5, 
+      riwayatSholat: [
+        { id: 1, minggu: 3, tanggal: 'Jumat, 11 Sep', detail: 'Tuntas 5 Waktu', status: 'Lengkap' }, 
+        { id: 2, minggu: 3, tanggal: 'Kamis, 10 Sep', detail: 'Tidak ada data', status: 'Kosong' }
+      ],
+      hafalan: [] 
+    },
+    { 
+      name: 'Siti Zahra', kelas: '10 RPL', nis: '2023002', 
+      nilai: { 'Pemrograman Dasar': { uts: 78, uas: 82 }, 'Basis Data': { uts: 92, uas: 95 } }, 
+      sholat: { Subuh: true, Dzuhur: true, Ashar: true, Maghrib: true, Isya: false }, mingguIni: 32, mingguTotal: 35, juz: 7, 
+      riwayatSholat: [
+        { id: 6, minggu: 3, tanggal: 'Kemarin, 12 Sep', detail: 'Tuntas 5 Waktu', status: 'Lengkap' }
+      ],
+      hafalan: [
+        {
+          surah: 'An-Nas',
+          totalAyat: 6,
+          status: 'Proses',
+          riwayat: [
+            { ayat: '1-3', tanggal: '13 Sep', predikat: 'Lancar' }
+          ]
+        },
+        {
+          surah: 'Al-Fatihah',
+          totalAyat: 7,
+          status: 'Lulus',
+          riwayat: [
+            { ayat: '4-7', tanggal: '12 Sep', predikat: 'Lancar' },
+            { ayat: '1-3', tanggal: '11 Sep', predikat: 'Cukup Lancar' }
+          ]
+        }
+      ]
+    }
+  ];
+
+  let currentRole = ''; let selectedIndex = 0; let currentActiveTab = 'dashboard'; 
+  let editIdRiwayatTerpilih = null; let tempEditSholat = { Subuh: false, Dzuhur: false, Ashar: false, Maghrib: false, Isya: false };
+
+  let openAccordions = {};
+
+  // --- Navigasi & Login ---
+  function switchView(viewId) { 
+    document.querySelectorAll('.view-screen').forEach(el => el.classList.remove('active')); 
+    document.getElementById(viewId).classList.add('active'); 
+  }
+
+  function switchTab(tabId, navElement) {
+    currentActiveTab = tabId;
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+    
+    const targetTab = document.getElementById(`tab-${tabId}`);
+    if (targetTab) targetTab.classList.add('active');
+    
+    if(navElement) {
+      navElement.classList.add('active');
+    } else {
+      const idx = tabId === 'dashboard' ? 0 : tabId === 'akademik' ? 1 : tabId === 'sholat' ? 2 : 3;
+      if (document.querySelectorAll('.nav-item')[idx]) {
+        document.querySelectorAll('.nav-item')[idx].classList.add('active'); 
+      }
+    }
+  }
+
+  function handleLogin() {
+    const uname = document.getElementById('login-username').value.trim().toLowerCase();
+    if (!uname) return alert("Masukkan ID pengguna!");
+    
+    if (uname === 'guru') currentRole = 'guru'; 
+    else currentRole = 'murid_ortu';
+    
+    selectedIndex = 0; 
+    
+    if (currentRole === 'guru') { 
+      document.getElementById('guru-controls').style.display = 'block'; 
+      document.getElementById('btn-input-nilai').style.display = 'flex'; 
+      populateStudentPicker(); 
+    } else { 
+      document.getElementById('guru-controls').style.display = 'none'; 
+      document.getElementById('btn-input-nilai').style.display = 'none'; 
+    }
+    
+    switchView('view-dashboard'); 
+    renderDashboard(); 
+    switchTab('dashboard');
+  }
+
+  function handleLogout() { 
+    document.getElementById('login-username').value = ''; 
+    document.getElementById('login-password').value = ''; 
+    switchView('view-login'); 
+  }
+
+  function selectStudent(index) { 
+    selectedIndex = Number(index); 
+    renderDashboard(); 
+  }
+
+  function populateStudentPicker() { 
+    document.getElementById('student-picker').innerHTML = students.map((st, i) => `<option value="${i}">${st.nis} - ${st.name}</option>`).join(''); 
+  }
+
+  // --- Modals Akademik & Sholat ---
+  function ubahFilterMinggu(val) { 
+    mingguTerpilih = Number(val); 
+    renderDashboard(); 
+  }
+
+  function toggleSholat(waktu) { 
+    if (currentRole !== 'guru') return; 
+    students[selectedIndex].sholat[waktu] = !students[selectedIndex].sholat[waktu]; 
+    renderDashboard(); 
+  }
+
+  function openNilaiModal() { 
+    const s = students[selectedIndex];
+    document.getElementById('modal-nilai-student-name').innerText = `Siswa: ${s.name} (${s.nis})`;
+    const container = document.getElementById('nilai-inputs-container');
+    
+    container.innerHTML = Object.entries(s.nilai).map(([mapel, scores]) => {
+      const idSafeMapel = mapel.replace(/\s+/g, ''); 
+      return `
+        <div style="margin-bottom: 16px; background: var(--bg-main); padding: 14px; border-radius: 14px; border: 1px solid var(--border-light);">
+          <label style="display:block; font-size:14px; font-weight:700; margin-bottom:10px; color: var(--text-main);">${mapel}</label>
+          <div style="display:flex; gap:12px;">
+            <div style="flex:1;">
+              <label style="font-size:12px; font-weight:600; color:var(--text-sec); display:block; margin-bottom:4px;">Nilai UTS</label>
+              <input type="number" id="input-uts-${idSafeMapel}" value="${scores.uts}" style="width:100%; padding:10px 12px; border:1.5px solid var(--border); border-radius:10px; font-size:15px; font-weight:600; outline:none; background:#ffffff;">
+            </div>
+            <div style="flex:1;">
+              <label style="font-size:12px; font-weight:600; color:var(--text-sec); display:block; margin-bottom:4px;">Nilai UAS</label>
+              <input type="number" id="input-uas-${idSafeMapel}" value="${scores.uas}" style="width:100%; padding:10px 12px; border:1.5px solid var(--border); border-radius:10px; font-size:15px; font-weight:600; outline:none; background:#ffffff;">
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+    
+    document.getElementById('modal-nilai').style.display = 'flex'; 
+  }
+
+  function closeNilaiModal() { 
+    document.getElementById('modal-nilai').style.display = 'none'; 
+  }
+
+  function saveNilai() { 
+    const s = students[selectedIndex];
+    Object.keys(s.nilai).forEach(mapel => {
+      const idSafeMapel = mapel.replace(/\s+/g, '');
+      s.nilai[mapel].uts = Number(document.getElementById(`input-uts-${idSafeMapel}`).value);
+      s.nilai[mapel].uas = Number(document.getElementById(`input-uas-${idSafeMapel}`).value);
+    });
+    closeNilaiModal(); 
+    renderDashboard(); 
+  }
+
+  function bukaEditRiwayat(id) { 
+    editIdRiwayatTerpilih = id;
+    const riwayat = students[selectedIndex].riwayatSholat.find(r => r.id === id);
+    document.getElementById('teks-tanggal-koreksi').innerText = `Tanggal: ${riwayat.tanggal}`;
+    tempEditSholat = { Subuh: false, Dzuhur: false, Ashar: false, Maghrib: false, Isya: false };
+    
+    const waktuList = ['Subuh', 'Dzuhur', 'Ashar', 'Maghrib', 'Isya'];
+    document.getElementById('modal-edit-list').innerHTML = waktuList.map(w => {
+      const isDone = tempEditSholat[w];
+      const icon = isDone ? 'ti-check' : 'ti-x';
+      return `<div class="chip ${isDone ? 'done' : ''}" onclick="toggleEditSholatMod('${w}')"><i class="ti ${icon}"></i> ${w}</div>`;
+    }).join('');
+    
+    document.getElementById('modal-edit-riwayat').style.display = 'flex'; 
+  }
+
+  function toggleEditSholatMod(waktu) {
+    tempEditSholat[waktu] = !tempEditSholat[waktu];
+    const waktuList = ['Subuh', 'Dzuhur', 'Ashar', 'Maghrib', 'Isya'];
+    document.getElementById('modal-edit-list').innerHTML = waktuList.map(w => {
+      const isDone = tempEditSholat[w];
+      const icon = isDone ? 'ti-check' : 'ti-x';
+      return `<div class="chip ${isDone ? 'done' : ''}" onclick="toggleEditSholatMod('${w}')"><i class="ti ${icon}"></i> ${w}</div>`;
+    }).join('');
+  }
+
+  function tutupEditRiwayat() { 
+    document.getElementById('modal-edit-riwayat').style.display = 'none'; 
+  }
+
+  function simpanEditRiwayat() { 
+    const waktuList = ['Subuh', 'Dzuhur', 'Ashar', 'Maghrib', 'Isya'];
+    let tuntas = []; let bolong = [];
+    waktuList.forEach(w => { if(tempEditSholat[w]) tuntas.push(w); else bolong.push(w); });
+    
+    let total = tuntas.length;
+    let statusStr = ''; let detailStr = '';
+    
+    if(total === 5) { statusStr = 'Lengkap'; detailStr = 'Koreksi Guru: Tuntas 5 Waktu'; } 
+    else if (total >= 3) { statusStr = 'Cukup'; detailStr = 'Koreksi Guru: Bolong ' + bolong.join(', '); } 
+    else { statusStr = 'Kurang'; detailStr = 'Koreksi Guru: Hanya ' + (total > 0 ? tuntas.join(' & ') : 'Tidak sholat'); }
+
+    const indexArray = students[selectedIndex].riwayatSholat.findIndex(r => r.id === editIdRiwayatTerpilih);
+    if(indexArray !== -1) {
+      students[selectedIndex].riwayatSholat[indexArray].status = statusStr;
+      students[selectedIndex].riwayatSholat[indexArray].detail = detailStr;
+    }
+
+    tutupEditRiwayat();
+    renderDashboard(); 
+  }
+
+  function toggleAccordion(surahIndex) {
+    openAccordions[surahIndex] = !openAccordions[surahIndex];
+    renderTahfiz();
+  }
+
+  // RENDER SUMMARY DASHBOARD
+  function renderDashboardSummary() {
+    const s = students[selectedIndex];
+    
+    // 1. Calculations for Akademik Summary
+    const entries = Object.entries(s.nilai);
+    let totalScore = 0;
+    let count = 0;
+    let highestSubject = '';
+    let highestScore = -1;
+
+    entries.forEach(([mapel, scores]) => {
+      const avgSubject = (scores.uts + scores.uas) / 2;
+      totalScore += avgSubject;
+      count++;
+      if (avgSubject > highestScore) {
+        highestScore = avgSubject;
+        highestSubject = mapel;
+      }
+    });
+
+    const overallAvg = count > 0 ? Math.round(totalScore / count) : 0;
+
+    // 2. Calculations for Sholat Summary
+    const doneSholatCount = Object.values(s.sholat).filter(Boolean).length;
+    const sholatPercentage = Math.round((doneSholatCount / 5) * 100);
+
+    // 3. Calculations for Tahfiz Summary
+    const totalHafalan = s.hafalan ? s.hafalan.length : 0;
+    const lulusCount = s.hafalan ? s.hafalan.filter(h => h.status === 'Lulus').length : 0;
+
+    const summaryContainer = document.getElementById('summary-cards-container');
+    summaryContainer.innerHTML = `
+      <!-- CARD 1: AKADEMIK SUMMARY -->
+      <div class="summary-card">
+        <div>
+          <div class="summary-card-header">
+            <span class="summary-card-icon" style="background: var(--primary-soft); color: var(--primary);">
+              <i class="ti ti-chart-bar"></i>
+            </span>
+            <span class="badge-status" style="background: var(--success-bg); color: var(--primary-dark);">
+              ${count} Mapel
+            </span>
+          </div>
+          <span style="font-size: 12px; color: var(--text-sec); font-weight: 600; display: block; margin-bottom: 2px;">Rata-Rata Akademik</span>
+          <div style="display: flex; align-items: baseline; gap: 8px;">
+            <h2 style="font-size: 32px; font-weight: 800; margin: 0; color: var(--text-main);">${overallAvg}</h2>
+            <span style="font-size: 13px; font-weight: 700; color: var(--primary-dark);">/ 100</span>
+          </div>
+          <div style="font-size: 12px; color: var(--text-sec); margin-top: 8px;">
+            Mapel Terbaik: <strong style="color: var(--text-main);">${highestSubject || '-'}</strong>
+          </div>
+        </div>
+        <button class="summary-card-action" onclick="switchTab('akademik')">
+          Lihat Detail Akademik <i class="ti ti-arrow-right"></i>
+        </button>
+      </div>
+
+      <!-- CARD 2: SHOLAT SUMMARY -->
+      <div class="summary-card">
+        <div>
+          <div class="summary-card-header">
+            <span class="summary-card-icon" style="background: var(--warning-bg); color: #b45309;">
+              <i class="ti ti-checklist"></i>
+            </span>
+            <span class="badge-status" style="background: ${doneSholatCount === 5 ? 'var(--success-bg)' : 'var(--warning-bg)'}; color: ${doneSholatCount === 5 ? 'var(--primary-dark)' : '#b45309'};">
+              ${doneSholatCount === 5 ? 'Tuntas' : 'Sebagian'}
+            </span>
+          </div>
+          <span style="font-size: 12px; color: var(--text-sec); font-weight: 600; display: block; margin-bottom: 2px;">Sholat 5 Waktu Hari Ini</span>
+          <div style="display: flex; align-items: baseline; gap: 8px;">
+            <h2 style="font-size: 32px; font-weight: 800; margin: 0; color: var(--text-main);">${doneSholatCount}</h2>
+            <span style="font-size: 13px; font-weight: 700; color: var(--text-sec);">/ 5 Waktu</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" style="width: ${sholatPercentage}%;"></div>
+          </div>
+        </div>
+        <button class="summary-card-action" onclick="switchTab('sholat')">
+          Lihat Detail Sholat <i class="ti ti-arrow-right"></i>
+        </button>
+      </div>
+
+      <!-- CARD 3: TAHFIZ SUMMARY -->
+      <div class="summary-card">
+        <div>
+          <div class="summary-card-header">
+            <span class="summary-card-icon" style="background: var(--info-bg); color: var(--info);">
+              <i class="ti ti-book-2"></i>
+            </span>
+            <span class="badge-status" style="background: var(--info-bg); color: var(--info);">
+              Target Juz ${s.juz}
+            </span>
+          </div>
+          <span style="font-size: 12px; color: var(--text-sec); font-weight: 600; display: block; margin-bottom: 2px;">Capaian Tahfiz</span>
+          <div style="display: flex; align-items: baseline; gap: 8px;">
+            <h2 style="font-size: 32px; font-weight: 800; margin: 0; color: var(--text-main);">${totalHafalan}</h2>
+            <span style="font-size: 13px; font-weight: 700; color: var(--text-sec);">Surah</span>
+          </div>
+          <div style="font-size: 12px; color: var(--text-sec); margin-top: 8px;">
+            Lulus Setoran: <strong style="color: var(--primary-dark);">${lulusCount} Surah</strong>
+          </div>
+        </div>
+        <button class="summary-card-action" onclick="switchTab('tahfiz')">
+          Lihat Detail Tahfiz <i class="ti ti-arrow-right"></i>
+        </button>
+      </div>
+    `;
+  }
+
+  function renderTahfiz() {
+    const s = students[selectedIndex];
+    const container = document.getElementById('tahfiz-content-area');
+    
+    if (!s.hafalan || s.hafalan.length === 0) {
+      container.innerHTML = `
+        <div style="text-align: center; padding: 36px 16px; color: var(--text-sec);">
+          <div style="width: 56px; height: 56px; background: var(--bg-main); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 12px;">
+            <i class="ti ti-book-off" style="font-size: 28px; color: var(--text-muted);"></i>
+          </div>
+          <p style="font-size: 14px; font-weight: 600; margin: 0 0 4px; color: var(--text-main);">Belum Ada Catatan Hafalan</p>
+          <p style="font-size: 13px; margin: 0;">Siswa ini belum memulai setoran hafalan Tahfiz.</p>
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = `
+      <div style="margin-bottom: 16px; background: linear-gradient(135deg, rgba(16,185,129,0.08) 0%, rgba(5,150,105,0.04) 100%); padding: 14px 16px; border-radius: 14px; border: 1px solid rgba(16,185,129,0.2); display: flex; align-items: center; justify-content: space-between;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <i class="ti ti-bookmark-book" style="font-size: 24px; color: var(--primary);"></i>
+          <div>
+            <span style="font-size: 12px; color: var(--text-sec); display: block;">Target Juz Saat Ini</span>
+            <span style="font-weight: 700; font-size: 15px; color: var(--text-main);">Juz ${s.juz}</span>
+          </div>
+        </div>
+        <span class="badge-status" style="background: var(--primary); color: #ffffff;">
+          <i class="ti ti-check"></i> ${s.hafalan.length} Surah Terdaftar
+        </span>
+      </div>
+      
+      <div id="tahfiz-surah-list">
+        ${s.hafalan.map((h, i) => {
+          const isOpen = !!openAccordions[i];
+          const isLulus = h.status === 'Lulus';
+          const badgeBg = isLulus ? 'var(--success-bg)' : 'rgba(59, 130, 246, 0.1)';
+          const badgeColor = isLulus ? 'var(--primary-dark)' : '#2563eb';
+
+          return `
+            <div class="tahfiz-surah-card">
+              <div class="tahfiz-surah-header" onclick="toggleAccordion(${i})">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <div style="width: 38px; height: 38px; border-radius: 10px; background: var(--bg-main); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; color: var(--primary);">
+                    ${i + 1}
+                  </div>
+                  <div>
+                    <h4 style="margin: 0; font-size: 15px; font-weight: 700; color: var(--text-main);">${h.surah}</h4>
+                    <span style="font-size: 12px; color: var(--text-sec);">${h.totalAyat} Ayat</span>
+                  </div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <span class="badge-status" style="background: ${badgeBg}; color: ${badgeColor};">
+                    ${h.status}
+                  </span>
+                  <i class="ti ti-chevron-down icon-rotate ${isOpen ? 'rotated' : ''}" style="font-size: 20px; color: var(--text-sec);"></i>
+                </div>
+              </div>
+
+              ${isOpen ? `
+                <div class="tahfiz-surah-body">
+                  <p style="font-size: 12px; font-weight: 700; color: var(--text-sec); text-transform: uppercase; letter-spacing: 0.05em; margin: 12px 0 8px;">Riwayat Setoran</p>
+                  ${h.riwayat.map(r => `
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; background: #ffffff; border-radius: 10px; margin-bottom: 6px; border: 1px solid var(--border-light);">
+                      <div style="display: flex; align-items: center; gap: 8px;">
+                        <i class="ti ti-notes" style="color: var(--primary);"></i>
+                        <span style="font-size: 13px; font-weight: 600; color: var(--text-main);">Ayat ${r.ayat}</span>
+                      </div>
+                      <div style="display: flex; align-items: center; gap: 12px;">
+                        <span style="font-size: 12px; color: var(--text-sec);">${r.tanggal}</span>
+                        <span style="font-size: 11px; font-weight: 700; color: var(--primary-dark); background: var(--success-bg); padding: 3px 8px; border-radius: 6px;">
+                          ${r.predikat}
+                        </span>
+                      </div>
+                    </div>
+                  `).join('')}
+                </div>
+              ` : ''}
+            </div>
+          `;
+        }).join('')}
+      </div>
+    `;
+  }
+
+  // RENDER ENGINE UTAMA
+  function renderDashboard() {
+    const s = students[selectedIndex];
+    
+    // Header Info
+    const initial = s.name ? s.name.charAt(0) : 'G';
+    const userInfoHTML = currentRole === 'guru' 
+      ? `<div class="user-profile-badge">
+           <div class="user-avatar"><i class="ti ti-user-check"></i></div>
+           <div>
+             <h2 style="margin:0; font-size:18px; font-weight: 800;">Bpk/Ibu Guru</h2>
+             <p style="margin:2px 0 0; font-size:13px; opacity:0.9;">Akses Pengajar & Input Data</p>
+           </div>
+         </div>` 
+      : `<div class="user-profile-badge">
+           <div class="user-avatar">${initial}</div>
+           <div>
+             <h2 style="margin:0; font-size:18px; font-weight: 800;">${s.name}</h2>
+             <p style="margin:2px 0 0; font-size:13px; opacity:0.9;">Kelas ${s.kelas} | NIS: ${s.nis}</p>
+           </div>
+         </div>`;
+    document.getElementById('user-info').innerHTML = userInfoHTML;
+
+    // --- Summary Dashboard Render ---
+    renderDashboardSummary();
+
+    // --- Akademik Render ---
+    const akademikList = document.getElementById('akademik-list');
+    akademikList.innerHTML = Object.entries(s.nilai).map(([mapel, scores]) => {
+      const avg = Math.round((scores.uts + scores.uas) / 2);
+      const isGood = avg >= 85;
+      return `
+        <div class="list-item">
+          <span style="color:var(--text-main); font-weight:600; width:50%; font-size:14px; display:flex; align-items:center; gap:8px;">
+            <span style="width:8px; height:8px; border-radius:50%; background: ${isGood ? 'var(--primary)' : 'var(--warning)'}; display:inline-block;"></span>
+            ${mapel}
+          </span>
+          <div style="display:flex; width:50%; justify-content:space-around;">
+            <span style="font-weight:700; color:var(--text-main); font-size: 15px;">${scores.uts}</span>
+            <span style="font-weight:700; color:var(--text-main); font-size: 15px;">${scores.uas}</span>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    // --- Sholat Render ---
+    const waktuList = ['Subuh', 'Dzuhur', 'Ashar', 'Maghrib', 'Isya'];
+    const doneCount = Object.values(s.sholat).filter(Boolean).length;
+    document.getElementById('ibadah-stats').innerText = `Tuntas hari ini: ${doneCount}/5 waktu`;
+    
+    document.getElementById('ibadah-list').innerHTML = waktuList.map(w => {
+      const isDone = s.sholat[w];
+      const icon = isDone ? 'ti-check' : 'ti-x';
+      
+      const onClickAttr = currentRole === 'guru' ? `onclick="toggleSholat('${w}')"` : '';
+      const styleAttr = currentRole !== 'guru' ? `style="cursor: default; opacity: 0.85;"` : '';
+
+      return `<div class="chip ${isDone ? 'done' : ''}" ${onClickAttr} ${styleAttr}>
+                <i class="ti ${icon}"></i> ${w}
+              </div>`;
+    }).join('');
+
+    const riwayatTersaring = s.riwayatSholat.filter(r => r.minggu === mingguTerpilih);
+    const containerRiwayat = document.getElementById('sholat-history-list');
+
+    if (riwayatTersaring.length === 0) {
+      containerRiwayat.innerHTML = `<p style="font-size: 13px; color: var(--text-sec); text-align: center; margin-top: 20px; padding: 16px; background: var(--bg-main); border-radius: 12px;">Belum ada catatan di minggu ini.</p>`;
+    } else {
+      containerRiwayat.innerHTML = riwayatTersaring.map(r => {
+        let statusColor, statusBg;
+        if(r.status === 'Lengkap') { statusColor = 'var(--primary-dark)'; statusBg = 'var(--success-bg)'; }
+        else if (r.status === 'Kurang') { statusColor = 'var(--danger)'; statusBg = 'var(--danger-bg)'; }
+        else if (r.status === 'Kosong') { statusColor = '#475569'; statusBg = '#f1f5f9'; } 
+        else { statusColor = '#b45309'; statusBg = 'var(--warning-bg)'; } 
+        
+        let tombolEditHTML = '';
+        if (currentRole === 'guru' && r.status === 'Kosong') {
+          tombolEditHTML = `<button class="btn-edit-mini" onclick="bukaEditRiwayat(${r.id})"><i class="ti ti-edit"></i> Edit</button>`;
+        }
+
+        return `
+          <div class="history-card">
+            <div style="width:100%; display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-weight:700; font-size:14px; color:var(--text-main);">${r.tanggal}</span>
+              <div>
+                <span class="badge-status" style="color:${statusColor}; background:${statusBg};">${r.status}</span>
+                ${tombolEditHTML}
+              </div>
+            </div>
+            <div style="font-size:13px; color:var(--text-sec); display:flex; gap:6px; margin-top:6px; align-items:center;">
+              <i class="ti ti-info-circle" style="color:var(--text-muted)"></i> <span>${r.detail}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // --- Tahfiz Render ---
+    renderTahfiz();
+  }
+</script>
+</body>
+</html>
